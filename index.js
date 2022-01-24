@@ -21,8 +21,8 @@ async function main() {
 app.listen(process.env.PORT || PORT, () => {
   console.log(`The server started on port ${PORT} !!!!!!`);
 });
-
-app.get("/users", async (res) => {
+// siempre va req como primer parametro
+app.get("/users", async (req, res) => {
   try {
     const arrayUsers = await User.find();
     res.send(`${arrayUsers}`);
