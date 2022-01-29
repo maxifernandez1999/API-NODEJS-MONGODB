@@ -6,7 +6,7 @@ const tokenSign = async (user) => { //TODO: Genera Token
             _id: user._id, //TODO: <---
             role: user.role
         }, //TODO: Payload ! Carga útil
-        process.env.JWT_SECRET, //TODO ENV 
+        process.env.SECRET_KEY, //TODO ENV 
         {
             expiresIn: "2h", //TODO tiempo de vida
         }
@@ -15,7 +15,7 @@ const tokenSign = async (user) => { //TODO: Genera Token
 
 const verifyToken = async (token) => {
     try {
-        return jwt.verify(token, process.env.JWT_SECRET)
+        return jwt.verify(token, process.env.SECRET_KEY)
     } catch (e) {
         return null
     }

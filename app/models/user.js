@@ -3,12 +3,22 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String
   },
+  lastName: {
+    type: String
+  },
   age:{
     type: Number
   },
-  lastName: String,
-  email: String,
-  password: String
+  email: {
+    type: String
+  },
+  password: {
+    type: String
+  },
+  role: {
+    type: String,
+    default: 'user'
+  }
 },{
   timestamps: true,
   versionKey: false

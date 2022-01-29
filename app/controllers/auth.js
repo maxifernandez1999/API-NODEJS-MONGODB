@@ -1,5 +1,5 @@
 const { httpError } = require('../helpers/handleError')
-// const { encrypt, compare } = require('../helpers/handleBcrypt')
+const { encrypt, compare } = require('../helpers/handleBcrypt')
 const { tokenSign } = require('../helpers/generateToken')
 const userModel = require('../models/user')
 
@@ -46,15 +46,19 @@ const loginCtrl = async (req, res) => {
 const registerCtrl = async (req, res) => {
     try {
         //TODO: Datos que envias desde el front (postman)
-        const { email, password } = req.body
+        const { name, lastName, age, email, password, role } = req.body
 
-        const passwordHash = await encrypt(password) //TODO: (123456)<--- Encriptando!!
+        const passwordHash = await encrypt(password); //TODO: (123456)<--- Encriptando!!
         const registerUser = await userModel.create({
+            name,
+            lastName,
+            age,
             email,
-            password: passwordHash
+            password: passwordHash,
+            role
         })
 
-        res.send({ data: registerUser })
+        res.send({message:"User registed", data: registerUser })
 
     } catch (e) {
         httpError(res, e)
